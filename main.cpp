@@ -1,24 +1,27 @@
 #include <iostream>
-const int MAX = 100;            // size of array
+#include <vector>
+
 template<class Type>
 class Stack{
 private:
-    Type st[MAX];               // stack array of any type
-    int top;                    // number of top of stack
+    std::vector<Type> vector;       // stack array of any type
 public:
-    Stack(){               // constructor
-     top = -1;
+    Stack(){}                       // constructor
+
+    void push(const Type& var){            // put number on stack
+        vector.push_back(var);
     }
-    void push(Type var){        // put number on stack
-        st[++top] = var;
-    }
-    Type pop(){                 // takes numbers off the stack (pop's number)
-        return st[top--];
+
+    Type pop(){                    // takes numbers off the stack (pop's number)
+
+        Type tmp = vector.back();
+        vector.pop_back();
+        return tmp;
     }
 };
 
 int main() {
-    Stack<double>s1;            // s1 is object of class Stack<double>
+    Stack<double>s1;                // s1 is object of class Stack<double>
 
     // pushing 3 doubles and poping 3 doubles
     s1.push(1111.11);
@@ -28,9 +31,5 @@ int main() {
     std::cout << "1: " << s1.pop() << '\n';
     std::cout << "2: " << s1.pop() << '\n';
     std::cout << "3: " << s1.pop() << '\n';
-
-
-
-
     return 0;
 }
